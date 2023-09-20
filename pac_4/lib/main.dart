@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pac_4/pages/login_page.dart';
 import 'package:pac_4/pages/registration_page.dart';
 
+import 'pages/register_card.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -18,6 +20,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => const LoginPage(),
         '/dialog': (context) => const DialogExample(),
         '/register': (context) => const RegistrationPage(),
+        '/card-register': (context) => const RegisterScreen(),
       },
     );
   }
@@ -26,13 +29,22 @@ class MyApp extends StatelessWidget {
 class DialogExample extends StatelessWidget {
   const DialogExample({super.key});
 
+  void goToRegisterCard(BuildContext context) {
+    Navigator.pushNamed(context, '/card-register'); // Use '/card-register' to match the route you defined in MaterialApp
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Shuffle'),
       ),
-      body: TextButton(
+      body:
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+       TextButton(
         onPressed: () => showDialog<String>(
           context: context,
           builder: (BuildContext context) => AlertDialog(
@@ -59,6 +71,13 @@ class DialogExample extends StatelessWidget {
         ),
         child: const Text('Abrir Carta'),
       ),
+      TextButton(
+        onPressed: () => goToRegisterCard(context),
+        child: const Text('Escrever carta'),
+      ),
+      ]
+    )
     );
   }
+  
 }
