@@ -38,6 +38,9 @@ dependencies:
   permission_handler: ^11.0.0
   image_picker: ^1.0.4
 
+  box_ui:
+    path: ../
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
