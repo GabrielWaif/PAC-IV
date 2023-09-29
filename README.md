@@ -4,16 +4,6 @@
 
 <p align="center">
   A social media app for sharing and voting on posts.
-  <br />
-  <a href="#demo">View Demo</a>
-  ·
-  <a href="#getting-started">Getting Started</a>
-  ·
-  <a href="#features">Features</a>
-  ·
-  <a href="#contributing">Contributing</a>
-  ·
-  <a href="#license">License</a>
 </p>
 
 <!-- TABLE OF CONTENTS -->
