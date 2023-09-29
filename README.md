@@ -1,12 +1,4 @@
-Certainly! Here's an example of a README template tailored to your Shuffle Flutter project:
-
-```markdown
 <!-- Shuffle Flutter Project README -->
-
-<!-- PROJECT LOGO -->
-<p align="center">
-  <img src="images/shuffle_logo.png" alt="Shuffle Logo" width="120" height="120">
-</p>
 
 <h3 align="center">Shuffle</h3>
 
@@ -33,7 +25,6 @@ Certainly! Here's an example of a README template tailored to your Shuffle Flutt
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Features](#features)
-- [Contributing](#contributing)
 - [License](#license)
 
 <!-- ABOUT THE PROJECT -->
@@ -46,8 +37,6 @@ Shuffle is a social media app designed for sharing and voting on posts. With Shu
 - [Flutter](https://flutter.dev/)
 - [Dart](https://dart.dev/)
 - [.NET](https://dotnet.microsoft.com/)
-- [AWS EC2](https://aws.amazon.com/ec2/)
-- [AWS CloudWatch](https://aws.amazon.com/cloudwatch/)
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -69,13 +58,13 @@ To get started with Shuffle, follow these steps:
 
 2. Navigate to the Flutter frontend directory and install dependencies:
    ```sh
-   cd Shuffle-frontend
+   cd PAC-IV
    flutter pub get
    ```
 
 3. Navigate to the .NET backend directory and build the project:
    ```sh
-   cd Shuffle-backend
+   cd PAC-IV
    dotnet build
    ```
 
@@ -86,7 +75,6 @@ To get started with Shuffle, follow these steps:
    flutter run
    ```
 
-<!-- FEATURES -->
 ## Features
 
 - User authentication and profile management.
@@ -94,11 +82,6 @@ To get started with Shuffle, follow these steps:
 - Upvote and downvote posts.
 - Real-time updates and notifications.
 - AWS-hosted backend with EC2 and monitoring with CloudWatch.
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
 
 <!-- Demo -->
 ## Demo
