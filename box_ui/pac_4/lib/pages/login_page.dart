@@ -5,13 +5,11 @@ class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   void _handleLogin(BuildContext context) {
-    Navigator.pushNamed(context,
-        '/dialog'); // Use '/dialog' to match the route you defined in MaterialApp
+    Navigator.pushReplacementNamed(context, '/dialog');
   }
 
   void _handleRegister(BuildContext context) {
-    Navigator.pushNamed(context,
-        '/register'); // Use '/register' to match the route you defined in MaterialApp
+    Navigator.pushNamed(context, '/register');
   }
 
   @override
