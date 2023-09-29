@@ -72,8 +72,3 @@ To get started with Shuffle, follow these steps:
 - Upvote and downvote posts.
 - Real-time updates and notifications.
 - AWS-hosted backend with EC2 and monitoring with CloudWatch.
-
-<!-- Demo -->
-## Demo
-
-![Shuffle Demo](demo/demo.gif)
