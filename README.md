@@ -1,3 +1,6 @@
+Certainly! Here's an example of a README template tailored to your Shuffle Flutter project:
+
+```markdown
 <!-- Shuffle Flutter Project README -->
 
 <!-- PROJECT LOGO -->
@@ -62,3 +65,42 @@ To get started with Shuffle, follow these steps:
 1. Clone the repo:
    ```sh
    git clone https://github.com/your_username/Shuffle.git
+   ```
+
+2. Navigate to the Flutter frontend directory and install dependencies:
+   ```sh
+   cd Shuffle-frontend
+   flutter pub get
+   ```
+
+3. Navigate to the .NET backend directory and build the project:
+   ```sh
+   cd Shuffle-backend
+   dotnet build
+   ```
+
+4. Set up your AWS EC2 server for the backend and configure CloudWatch for monitoring.
+
+5. Run the Flutter app:
+   ```sh
+   flutter run
+   ```
+
+<!-- FEATURES -->
+## Features
+
+- User authentication and profile management.
+- Card-based post browsing.
+- Upvote and downvote posts.
+- Real-time updates and notifications.
+- AWS-hosted backend with EC2 and monitoring with CloudWatch.
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+<!-- Demo -->
+## Demo
+
+![Shuffle Demo](demo/demo.gif)
