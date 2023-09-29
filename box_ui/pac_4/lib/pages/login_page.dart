@@ -5,7 +5,7 @@ class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   void _handleLogin(BuildContext context) {
-    Navigator.pushReplacementNamed(context, '/dialog');
+    Navigator.pushNamed(context, '/dialog');
   }
 
   void _handleRegister(BuildContext context) {
