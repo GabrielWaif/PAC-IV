@@ -4,8 +4,7 @@ class RegistrationPage extends StatelessWidget {
   const RegistrationPage({Key? key}) : super(key: key);
 
   void _handleRegistration(BuildContext context) {
-    Navigator.pushReplacementNamed(context,
-        '/'); // Use '/' to match the route you defined in MaterialApp, returning to login page
+    Navigator.pop(context);
   }
 
   @override
