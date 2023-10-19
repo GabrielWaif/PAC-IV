@@ -14,38 +14,44 @@ class DialogExample extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Shuffle'),
       ),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            TextButton(
-              onPressed: () => showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-                  title: const Text('Título da carta'),
-                  content: Column(
-                    children: <Widget>[
-                      const Text('Descrição da Carta'),
-                      const SizedBox(height: 20), // Espaço entre texto e imagem
-                      Image.asset(
-                          './assets/lanso.jpg'), // Substitua pelo caminho da sua imagem
-                    ],
-                  ),
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () => Navigator.pop(context, 'Cancel'),
-                      child: const Text('Sair'),
-                    ),
-                    TextButton(
-                      onPressed: () => Navigator.pop(context, 'OK'),
-                      child: const Text('Like'),
-                    ),
-                  ],
-                ),
+      body: Card(
+        clipBehavior: Clip.hardEdge,
+        color: Colors.grey,
+        child: InkWell(
+          onTap: () => showDialog<String>(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              title: const Text('Título da carta'),
+              content: Column(
+                children: <Widget>[
+                  const Text('Descrição da Carta'),
+                  const SizedBox(height: 20), // Espaço entre texto e imagem
+                  Image.asset(
+                      './assets/lanso.jpg'), // Substitua pelo caminho da sua imagem
+                ],
               ),
-              child: const Text('Abrir Carta'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'Cancel'),
+                  child: const Text('Sair'),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'OK'),
+                  child: const Text('Like'),
+                ),
+              ],
             ),
-          ]),
+          ),
+          child: Container(
+            height: 700,
+            child: Image.asset(
+              './assets/carta.jpg',
+              fit: BoxFit.fill,
+
+            ),
+          )
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           goToRegisterCard(context);
