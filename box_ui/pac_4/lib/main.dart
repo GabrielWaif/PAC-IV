@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pac_4/pages/login_page.dart';
 import 'package:pac_4/pages/registration_page.dart';
 
+import 'pages/custom_card.dart';
 import 'pages/register_card.dart';
 
 void main() {
@@ -45,30 +46,18 @@ class DialogExample extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
        TextButton(
-        onPressed: () => showDialog<String>(
-          context: context,
-          builder: (BuildContext context) => AlertDialog(
-            title: const Text('Título da carta'),
-            content: Column(
-              children: <Widget>[
-                const Text('Descrição da Carta'),
-                const SizedBox(height: 20), // Espaço entre texto e imagem
-                Image.asset(
-                    './assets/lanso.jpg'), // Substitua pelo caminho da sua imagem
-              ],
-            ),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'Cancel'),
-                child: const Text('Sair'),
-              ),
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'OK'),
-                child: const Text('Like'),
-              ),
-            ],
-          ),
-        ),
+        onPressed:() => {
+           Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CustomCard(
+                        title: 'carta teste',
+                        description: 'Carta de teste pros guri',
+                        imagePath: './assets/lanso.jpg',
+                      ),
+                    ),
+           )
+        },
         child: const Text('Abrir Carta'),
       ),
       TextButton(

@@ -14,12 +14,21 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget imageWidget;
+
+    if (imagePath.contains("assets/")) {
+      // If the path contains "assets", use Image.asset
+      imageWidget = Image.asset(imagePath);
+    } else {
+      // Otherwise, use Image.file
+      imageWidget = Image.file(File(imagePath), fit: BoxFit.cover);
+    }
     return AlertDialog(
       title: Text(title), // Title
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Image.file(File(imagePath),fit: BoxFit.cover,), // Image
+          imageWidget, // Image
           SizedBox(height: 12.0), // Adjust spacing as needed
           Text(description), // Description
         ],
