@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pac_4/pages/login_page.dart';
 import 'package:pac_4/pages/registration_page.dart';
-import 'package:pac_4/pages/dialog_page.dart';
 
 import 'pages/custom_card.dart';
 import 'pages/register_card.dart';
