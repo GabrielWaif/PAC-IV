@@ -16,7 +16,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 void _handleRegistration(BuildContext context) {
-  Navigator.pushReplacementNamed(context, '/dialog');
+  Navigator.pop(context);
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
