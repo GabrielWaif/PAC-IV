@@ -79,7 +79,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _pickImage,
-              child: Text('Escolha uma Imagen'),
+              child: Text('Escolha uma Imagem'),
             ),
             SizedBox(height: 16.0),
             pickedImage != null ? Text('') : Text('No image selected'),
@@ -97,6 +97,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         title: title,
                         description: description,
                         imagePath: pickedImage!.path,
+                        upvotes: 0,
+                        downvotes: 0,
                       ),
                     ),
                   );

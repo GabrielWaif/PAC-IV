@@ -1,12 +1,24 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:pac_4/firebase_options.dart';
 import 'package:pac_4/pages/login_page.dart';
 import 'package:pac_4/pages/registration_page.dart';
 
 import 'pages/custom_card.dart';
 import 'pages/register_card.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async{
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  final CollectionReference cardsCollection = FirebaseFirestore.instance.collection('cards');
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -106,6 +118,8 @@ class DialogExample extends StatelessWidget {
                           title: 'carta teste',
                           description: 'Carta de teste pros guri',
                           imagePath: './assets/lanso.jpg',
+                          upvotes: 1600,
+                          downvotes: 102,
                         ),
                       ),
                     );

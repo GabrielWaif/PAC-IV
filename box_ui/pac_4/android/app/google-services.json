@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1055733223773",
+    "project_id": "shuffle-a5a54",
+    "storage_bucket": "shuffle-a5a54.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055733223773:android:ec5642eec220f1c2b058b4",
+        "android_client_info": {
+          "package_name": "com.app.pac_4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuXBr5-g1aerZLrdG_Apamp8K74hPUQJU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,11 +5,15 @@ class CustomCard extends StatelessWidget {
   final String title;
   final String description;
   final String imagePath;
+  final int upvotes;
+  final int downvotes;
 
   CustomCard({
     required this.title,
     required this.description,
     required this.imagePath,
+     required this.upvotes, 
+     required this.downvotes,
   });
 
   @override
