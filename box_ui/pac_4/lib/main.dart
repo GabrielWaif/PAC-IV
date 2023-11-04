@@ -37,9 +37,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => const LoginPage(),
+        '/': (context) => LoginPage(),
         '/dialog': (context) => const DialogExample(),
-        '/register': (context) => const RegistrationPage(),
+        '/register': (context) => RegistrationPage(),
         '/card-register': (context) => const RegisterScreen(),
       },
       theme: ThemeData(
@@ -106,7 +106,7 @@ class DialogExample extends StatelessWidget {
     final DocumentSnapshot randomCard = await getRandomCard();
 
     final DocumentReference cardReference = randomCard.reference; // Get the reference to the Firestore document
-    
+
     Navigator.push(
       context,
       MaterialPageRoute(

@@ -1,11 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegistrationPage extends StatelessWidget {
-  const RegistrationPage({Key? key}) : super(key: key);
+  RegistrationPage({Key? key}) : super(key: key);
 
-  void _handleRegistration(BuildContext context) {
-    Navigator.pushReplacementNamed(context,
-        '/'); // Use '/' to match the route you defined in MaterialApp, returning to login page
+  final TextEditingController fullNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  void _handleRegistration(BuildContext context) async {
+    try {
+      final UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text,
+      );
+
+      if (userCredential.user != null) {
+        // You can store additional user data or perform other actions here.
+        Navigator.pushNamed(context, '/dialog'); // Navigate to the next screen
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Registration failed. Please check your information.'),
+          ),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Registration failed. Please check your information.'),
+        ),
+      );
+    }
   }
 
   @override
@@ -28,7 +55,7 @@ class RegistrationPage extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 40,
-                    fontWeight: FontWeight.bold,
+                    
                   ),
                 ),
                 SizedBox(
@@ -94,8 +121,9 @@ class RegistrationPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              child: const TextField(
-                                decoration: InputDecoration(
+                              child: TextField(
+                                controller: fullNameController,
+                                decoration: const InputDecoration(
                                   hintText: "Full Name",
                                   hintStyle: TextStyle(color: Colors.grey),
                                   border: InputBorder.none,
@@ -111,8 +139,9 @@ class RegistrationPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              child: const TextField(
-                                decoration: InputDecoration(
+                              child: TextField(
+                                controller: emailController,
+                                decoration: const InputDecoration(
                                   hintText: "Email",
                                   hintStyle: TextStyle(color: Colors.grey),
                                   border: InputBorder.none,
@@ -128,8 +157,10 @@ class RegistrationPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              child: const TextField(
-                                decoration: InputDecoration(
+                              child: TextField(
+                                controller: passwordController,
+                                obscureText: true,
+                                decoration: const InputDecoration(
                                   hintText: "Password",
                                   hintStyle: TextStyle(color: Colors.grey),
                                   border: InputBorder.none,
@@ -168,7 +199,7 @@ class RegistrationPage extends StatelessWidget {
                         padding: const EdgeInsets.all(36.0),
                         child: GestureDetector(
                           onTap: () {
-                            _handleRegistration(context);
+                            Navigator.pushReplacementNamed(context, '/'); // Return to the login page
                           },
                           child: const Text(
                             "Already have an account? Login",

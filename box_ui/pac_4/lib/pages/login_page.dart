@@ -1,17 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  LoginPage({Key? key}) : super(key: key);
 
-  void _handleLogin(BuildContext context) {
-    Navigator.pushNamed(context,
-        '/dialog'); // Use '/dialog' to match the route you defined in MaterialApp
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  void _handleLogin(BuildContext context) async {
+    try {
+      final UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text,
+      );
+
+      if (userCredential.user != null) {
+        Navigator.pushNamed(context, '/dialog'); // Navigate to the next screen
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Falha no login. Por favor verifique as credenciais informadas.'),
+          ),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Falha no login. Por favor verifique as credenciais informadas.'),
+        ),
+      );
+    }
   }
 
   void _handleRegister(BuildContext context) {
-    Navigator.pushNamed(context,
-        '/register'); // Use '/register' to match the route you defined in MaterialApp
+    Navigator.pushNamed(context, '/register'); // Use '/register' to match the route you defined in MaterialApp
   }
 
   @override
@@ -100,9 +124,10 @@ class LoginPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              child: const TextField(
-                                decoration: InputDecoration(
-                                  hintText: "Email or Phone number",
+                              child: TextField(
+                                controller: emailController,
+                                decoration: const InputDecoration(
+                                  hintText: "Email",
                                   hintStyle: TextStyle(color: Colors.grey),
                                   border: InputBorder.none,
                                 ),
@@ -117,8 +142,10 @@ class LoginPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              child: const TextField(
-                                decoration: InputDecoration(
+                              child: TextField(
+                                controller: passwordController,
+                                obscureText: true,
+                                decoration: const InputDecoration(
                                   hintText: "Password",
                                   hintStyle: TextStyle(color: Colors.grey),
                                   border: InputBorder.none,
@@ -130,10 +157,6 @@ class LoginPage extends StatelessWidget {
                       ),
                       const SizedBox(
                         height: 40,
-                      ),
-                      const Text(
-                        "Forgot Password?",
-                        style: TextStyle(color: Colors.grey),
                       ),
                       const SizedBox(
                         height: 40,
