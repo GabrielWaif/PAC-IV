@@ -1,12 +1,9 @@
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:permission_handler/permission_handler.dart';
-
-import 'custom_card.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -15,36 +12,46 @@ class RegisterScreen extends StatefulWidget {
   _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-void _handleRegistration(BuildContext context) {
-  Navigator.pushReplacementNamed(context, '/dialog');
-}
-
 class _RegisterScreenState extends State<RegisterScreen> {
-  // Define variables to store user input and image.
-  bool previewedCard = false;
   String title = '';
   String description = '';
   XFile? pickedImage;
 
-  // Function to request image picker permission.
-  Future<void> requestImagePermission() async {
-    final status = await Permission.camera.request();
-    if (status.isGranted) {
-      // Permission granted.
-    } else {
-      // Permission denied.
-      // Handle the denial.
-    }
-  }
-
   // Function to open image picker.
   Future<void> _pickImage() async {
-    await requestImagePermission();
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
     setState(() {
       pickedImage = pickedFile;
+    });
+  }
+
+  // Function to upload an image to Firebase Storage.
+  Future<String?> uploadImageToStorage() async {
+    if (pickedImage == null) {
+      return null;
+    }
+
+    final storage = FirebaseStorage.instance;
+    final imagePath = 'images/${pickedImage!.name}'; // Use the original filename
+    final storageRef = storage.ref().child(imagePath);
+    final UploadTask uploadTask = storageRef.putFile(File(pickedImage!.path));
+    await uploadTask.whenComplete(() => null);
+    return await storageRef.getDownloadURL();
+  }
+
+  // Function to add a card to Firestore.
+  Future<void> addCardToFirestore(String imageUrl) async {
+    final firestore = FirebaseFirestore.instance;
+    final cardsCollection = firestore.collection('cards');
+
+    await cardsCollection.add({
+      'title': title,
+      'description': description,
+      'imagePath': imageUrl,
+      'upvotes': 0,
+      'downvotes': 0,
     });
   }
 
@@ -82,43 +89,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Text('Escolha uma Imagem'),
             ),
             SizedBox(height: 16.0),
-            pickedImage != null ? Text('') : Text('No image selected'),
+            pickedImage != null
+                ? Image.file(File(pickedImage!.path),height: 300,)
+                : Text('No image selected'),
             SizedBox(height: 16.0),
             ElevatedButton(
-              onPressed: () {
-                if (title.isNotEmpty &&
-                    description.isNotEmpty &&
-                    pickedImage != null) {
-                  previewedCard = true;
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CustomCard(
-                        title: title,
-                        description: description,
-                        imagePath: pickedImage!.path,
-                        upvotes: 0,
-                        downvotes: 0,
+              onPressed: () async {
+                if (title.isNotEmpty && description.isNotEmpty) {
+                  final imageUrl = await uploadImageToStorage();
+                  if (imageUrl != null) {
+                    await addCardToFirestore(imageUrl);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Carta adicionada'),
                       ),
+                    );
+                    Navigator.pushNamed(context, '/dialog');
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Image upload failed'),
+                      ),
+                    );
+                  }
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Preencha todos os campos'),
                     ),
-                  );
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text('Preencha todos os campos'),
-                  )
-                  );
-                }
-              },
-              child: Text('Vizualizar carta'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                if (previewedCard == true) {
-                  _handleRegistration(context);
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text('Visualize a carta primeiramente'),
-                  )
                   );
                 }
               },
