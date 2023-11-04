@@ -1,15 +1,34 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:pac_4/firebase_options.dart';
 import 'package:pac_4/pages/login_page.dart';
 import 'package:pac_4/pages/registration_page.dart';
 
 import 'pages/custom_card.dart';
 import 'pages/register_card.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async{
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  final CollectionReference cardsCollection = FirebaseFirestore.instance.collection('cards');
+
+  print(cardsCollection);
+
+  runApp(MyApp());
 }
 
+
 class MyApp extends StatelessWidget {
+
+  
   const MyApp({super.key});
 
   @override
@@ -18,9 +37,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => const LoginPage(),
+        '/': (context) => LoginPage(),
         '/dialog': (context) => const DialogExample(),
-        '/register': (context) => const RegistrationPage(),
+        '/register': (context) => RegistrationPage(),
         '/card-register': (context) => const RegisterScreen(),
       },
       theme: ThemeData(
@@ -73,6 +92,35 @@ class MyApp extends StatelessWidget {
 }
 
 class DialogExample extends StatelessWidget {
+
+  Future<DocumentSnapshot> getRandomCard() async {
+    final cardsCollection = FirebaseFirestore.instance.collection('cards');
+    final QuerySnapshot querySnapshot = await cardsCollection.get();
+    final List<DocumentSnapshot> cards = querySnapshot.docs;
+    final Random random = Random();
+    final int randomIndex = random.nextInt(cards.length);
+    return cards[randomIndex];
+  }
+
+  void goToCustomCard(BuildContext context) async {
+    final DocumentSnapshot randomCard = await getRandomCard();
+
+    final DocumentReference cardReference = randomCard.reference; // Get the reference to the Firestore document
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CustomCard(
+          title: randomCard['title'], // Replace with the actual field names in your Firestore document
+          description: randomCard['description'], // Replace with the actual field names
+          imagePath: randomCard['imagePath'], // Replace with the actual field names
+          upvotes: randomCard['upvotes'], // Replace with the actual field names
+          downvotes: randomCard['downvotes'], // Replace with the actual field names
+          cardReference: cardReference, // Pass the card's DocumentReference
+        ),
+      ),
+    );
+  }
   const DialogExample({super.key});
 
   void goToRegisterCard(BuildContext context) {
@@ -98,18 +146,7 @@ class DialogExample extends StatelessWidget {
                 width: double.infinity,
                 height: double.infinity, // Adjust the height as needed
                 child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CustomCard(
-                          title: 'carta teste',
-                          description: 'Carta de teste pros guri',
-                          imagePath: './assets/lanso.jpg',
-                        ),
-                      ),
-                    );
-                  },
+                  onTap: ()  => goToCustomCard(context)
                 ),
               ),
             ),
