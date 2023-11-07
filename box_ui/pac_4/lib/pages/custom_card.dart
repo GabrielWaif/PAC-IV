@@ -1,3 +1,4 @@
+import 'package:box_ui/box_ui.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -81,9 +82,9 @@ Widget build(BuildContext context) {
             onPressed: handleUpvote,
             child: Row(
               children: [
-                Icon(Icons.arrow_upward, color: Colors.white), // Thumbs-up icon
+                Icon(Icons.arrow_upward, color: primaryColor), // Thumbs-up icon
                 SizedBox(width: 8.0), // Adjust spacing as needed
-                Text('$upvotes', style: TextStyle(color: Colors.white),), // Number of upvotes
+                Text('$upvotes', style: TextStyle(color: primaryColor),), // Number of upvotes
               ],
             ),
           ),
@@ -92,9 +93,9 @@ Widget build(BuildContext context) {
             onPressed: handleDownvote,
             child: Row(
               children: [
-                Icon(Icons.arrow_downward, color: Colors.white), // Thumbs-down icon
+                Icon(Icons.arrow_downward, color: primaryColor), // Thumbs-down icon
                 SizedBox(width: 8.0), // Adjust spacing as needed
-                Text('$downvotes', style: TextStyle(color: Colors.white),), // Number of downvotes
+                Text('$downvotes', style: TextStyle(color: primaryColor),), // Number of downvotes
             
               ],
             ),
