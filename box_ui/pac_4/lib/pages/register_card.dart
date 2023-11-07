@@ -108,7 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Image upload failed'),
+                        content: Text('Falha no upload da imagem'),
                       ),
                     );
                   }
