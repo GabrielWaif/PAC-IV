@@ -91,7 +91,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             SizedBox(height: 16.0),
             pickedImage != null
                 ? Image.file(File(pickedImage!.path),height: 300,)
-                : Text('No image selected'),
+                : Text('Nenhuma imagem selecionada'),
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () async {

@@ -104,7 +104,7 @@ Widget build(BuildContext context) {
             onPressed: () {
               Navigator.pop(context); // Close the AlertDialog
             },
-          child: Text('Close'),
+          child: Text('Fechar'),
           ),
         ],
       ),

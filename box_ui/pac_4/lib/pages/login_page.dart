@@ -65,7 +65,7 @@ class LoginPage extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  "Welcome Back",
+                  "Bem vindo novamente",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -146,7 +146,7 @@ class LoginPage extends StatelessWidget {
                                 controller: passwordController,
                                 obscureText: true,
                                 decoration: const InputDecoration(
-                                  hintText: "Password",
+                                  hintText: "Senha",
                                   hintStyle: TextStyle(color: Colors.grey),
                                   border: InputBorder.none,
                                 ),
@@ -196,7 +196,7 @@ class LoginPage extends StatelessWidget {
                             _handleRegister(context);
                           },
                           child: const Text(
-                            "Don't have an account? Register",
+                            "Não possui uma conta? Cadastrar-se.",
                             style: TextStyle(
                               color: Colors.grey,
                             ),

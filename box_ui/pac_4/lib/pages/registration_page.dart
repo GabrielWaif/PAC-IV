@@ -22,14 +22,14 @@ class RegistrationPage extends StatelessWidget {
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Registration failed. Please check your information.'),
+            content: Text('Falha no registro. Por favor verifique as credenciais informadas.'),
           ),
         );
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Registration failed. Please check your information.'),
+          content: Text('Falha no registro. Por favor verifique as credenciais informadas.'),
         ),
       );
     }
@@ -51,7 +51,7 @@ class RegistrationPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  "Register",
+                  "Registrar",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 40,
@@ -62,7 +62,7 @@ class RegistrationPage extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  "Create an account",
+                  "Criar uma conta",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -124,7 +124,7 @@ class RegistrationPage extends StatelessWidget {
                               child: TextField(
                                 controller: fullNameController,
                                 decoration: const InputDecoration(
-                                  hintText: "Full Name",
+                                  hintText: "Nome completo",
                                   hintStyle: TextStyle(color: Colors.grey),
                                   border: InputBorder.none,
                                 ),
@@ -161,7 +161,7 @@ class RegistrationPage extends StatelessWidget {
                                 controller: passwordController,
                                 obscureText: true,
                                 decoration: const InputDecoration(
-                                  hintText: "Password",
+                                  hintText: "Senha",
                                   hintStyle: TextStyle(color: Colors.grey),
                                   border: InputBorder.none,
                                 ),
@@ -186,7 +186,7 @@ class RegistrationPage extends StatelessWidget {
                           ),
                           child: const Center(
                             child: Text(
-                              "Register",
+                              "Registrar",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -202,7 +202,7 @@ class RegistrationPage extends StatelessWidget {
                             Navigator.pushReplacementNamed(context, '/'); // Return to the login page
                           },
                           child: const Text(
-                            "Already have an account? Login",
+                            "Já possui uma conta? Login.",
                             style: TextStyle(
                               color: Colors.grey,
                             ),
