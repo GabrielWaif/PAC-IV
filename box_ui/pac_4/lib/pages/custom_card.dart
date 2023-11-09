@@ -82,7 +82,7 @@ Widget build(BuildContext context) {
             onPressed: handleUpvote,
             child: Row(
               children: [
-                Icon(Icons.arrow_upward, color: primaryColor), // Thumbs-up icon
+                Icon(Icons.arrow_upward, color: secondaryColor), // Thumbs-up icon
                 SizedBox(width: 8.0), // Adjust spacing as needed
                 Text('$upvotes', style: TextStyle(color: primaryColor),), // Number of upvotes
               ],
@@ -93,7 +93,7 @@ Widget build(BuildContext context) {
             onPressed: handleDownvote,
             child: Row(
               children: [
-                Icon(Icons.arrow_downward, color: primaryColor), // Thumbs-down icon
+                Icon(Icons.arrow_downward, color: secondaryColor), // Thumbs-down icon
                 SizedBox(width: 8.0), // Adjust spacing as needed
                 Text('$downvotes', style: TextStyle(color: primaryColor),), // Number of downvotes
             
