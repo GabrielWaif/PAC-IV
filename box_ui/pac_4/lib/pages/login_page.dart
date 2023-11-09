@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:box_ui/box_ui.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -11,7 +12,8 @@ class LoginPage extends StatelessWidget {
 
   void _handleLogin(BuildContext context) async {
     try {
-      final UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+      final UserCredential userCredential =
+          await _auth.signInWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text,
       );
@@ -21,27 +23,30 @@ class LoginPage extends StatelessWidget {
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Falha no login. Por favor verifique as credenciais informadas.'),
+            content: Text(
+                'Falha no login. Por favor verifique as credenciais informadas.'),
           ),
         );
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Falha no login. Por favor verifique as credenciais informadas.'),
+          content: Text(
+              'Falha no login. Por favor verifique as credenciais informadas.'),
         ),
       );
     }
   }
 
   void _handleRegister(BuildContext context) {
-    Navigator.pushNamed(context, '/register'); // Use '/register' to match the route you defined in MaterialApp
+    Navigator.pushNamed(context,
+        '/register'); // Use '/register' to match the route you defined in MaterialApp
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[800],
+      backgroundColor: primaryColor.withAlpha(500),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -56,7 +61,7 @@ class LoginPage extends StatelessWidget {
                 Text(
                   "Login",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: secondaryColor,
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
                   ),
@@ -67,7 +72,7 @@ class LoginPage extends StatelessWidget {
                 Text(
                   "Bem vindo novamente",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: secondaryColor,
                     fontSize: 18,
                   ),
                 ),
@@ -80,14 +85,14 @@ class LoginPage extends StatelessWidget {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: secondaryColor,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(25.0),
                   topRight: Radius.circular(25.0),
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.blue.withOpacity(0.3),
+                    color: primaryColor.withOpacity(0.3),
                     blurRadius: 20,
                     offset: const Offset(0, 10),
                   ),
@@ -103,11 +108,11 @@ class LoginPage extends StatelessWidget {
                       ),
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: secondaryColor,
                           borderRadius: BorderRadius.circular(10),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.blue.withOpacity(0.1),
+                              color: primaryColor.withOpacity(0.1),
                               blurRadius: 20,
                               offset: const Offset(0, 10),
                             ),
@@ -120,7 +125,7 @@ class LoginPage extends StatelessWidget {
                               decoration: BoxDecoration(
                                 border: Border(
                                   bottom: BorderSide(
-                                    color: Colors.grey[200]!,
+                                    color: tertiaryColor.withAlpha(200),
                                   ),
                                 ),
                               ),
@@ -128,7 +133,7 @@ class LoginPage extends StatelessWidget {
                                 controller: emailController,
                                 decoration: const InputDecoration(
                                   hintText: "Email",
-                                  hintStyle: TextStyle(color: Colors.grey),
+                                  hintStyle: TextStyle(color: tertiaryColor),
                                   border: InputBorder.none,
                                 ),
                               ),
@@ -138,7 +143,7 @@ class LoginPage extends StatelessWidget {
                               decoration: BoxDecoration(
                                 border: Border(
                                   bottom: BorderSide(
-                                    color: Colors.grey[200]!,
+                                    color: tertiaryColor.withAlpha(200),
                                   ),
                                 ),
                               ),
@@ -147,7 +152,7 @@ class LoginPage extends StatelessWidget {
                                 obscureText: true,
                                 decoration: const InputDecoration(
                                   hintText: "Senha",
-                                  hintStyle: TextStyle(color: Colors.grey),
+                                  hintStyle: TextStyle(color: tertiaryColor),
                                   border: InputBorder.none,
                                 ),
                               ),
@@ -170,13 +175,13 @@ class LoginPage extends StatelessWidget {
                           margin: const EdgeInsets.symmetric(horizontal: 50),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
-                            color: Colors.blue[800],
+                            color: primaryColor.withAlpha(500),
                           ),
                           child: const Center(
                             child: Text(
                               "Login",
                               style: TextStyle(
-                                color: Colors.white,
+                                color: secondaryColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -198,7 +203,7 @@ class LoginPage extends StatelessWidget {
                           child: const Text(
                             "Não possui uma conta? Cadastrar-se.",
                             style: TextStyle(
-                              color: Colors.grey,
+                              color: tertiaryColor,
                             ),
                           ),
                         ),

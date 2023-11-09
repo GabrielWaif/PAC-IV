@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:box_ui/box_ui.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class RegistrationPage extends StatelessWidget {
@@ -11,7 +12,8 @@ class RegistrationPage extends StatelessWidget {
 
   void _handleRegistration(BuildContext context) async {
     try {
-      final UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+      final UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text,
       );
@@ -22,14 +24,16 @@ class RegistrationPage extends StatelessWidget {
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Falha no registro. Por favor verifique as credenciais informadas.'),
+            content: Text(
+                'Falha no registro. Por favor verifique as credenciais informadas.'),
           ),
         );
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Falha no registro. Por favor verifique as credenciais informadas.'),
+          content: Text(
+              'Falha no registro. Por favor verifique as credenciais informadas.'),
         ),
       );
     }
@@ -38,7 +42,7 @@ class RegistrationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[800],
+      backgroundColor: primaryColor.withAlpha(500),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -53,9 +57,8 @@ class RegistrationPage extends StatelessWidget {
                 Text(
                   "Registrar",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: secondaryColor,
                     fontSize: 40,
-                    
                   ),
                 ),
                 SizedBox(
@@ -64,7 +67,7 @@ class RegistrationPage extends StatelessWidget {
                 Text(
                   "Criar uma conta",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: secondaryColor,
                     fontSize: 18,
                   ),
                 ),
@@ -77,14 +80,14 @@ class RegistrationPage extends StatelessWidget {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: secondaryColor,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(25.0),
                   topRight: Radius.circular(25.0),
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.blue.withOpacity(0.3),
+                    color: primaryColor.withOpacity(0.3),
                     blurRadius: 20,
                     offset: const Offset(0, 10),
                   ),
@@ -100,11 +103,11 @@ class RegistrationPage extends StatelessWidget {
                       ),
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: secondaryColor,
                           borderRadius: BorderRadius.circular(10),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.blue.withOpacity(0.1),
+                              color: primaryColor.withOpacity(0.1),
                               blurRadius: 20,
                               offset: const Offset(0, 10),
                             ),
@@ -117,7 +120,7 @@ class RegistrationPage extends StatelessWidget {
                               decoration: BoxDecoration(
                                 border: Border(
                                   bottom: BorderSide(
-                                    color: Colors.grey[200]!,
+                                    color: tertiaryColor.withAlpha(200),
                                   ),
                                 ),
                               ),
@@ -125,7 +128,7 @@ class RegistrationPage extends StatelessWidget {
                                 controller: fullNameController,
                                 decoration: const InputDecoration(
                                   hintText: "Nome completo",
-                                  hintStyle: TextStyle(color: Colors.grey),
+                                  hintStyle: TextStyle(color: tertiaryColor),
                                   border: InputBorder.none,
                                 ),
                               ),
@@ -135,7 +138,7 @@ class RegistrationPage extends StatelessWidget {
                               decoration: BoxDecoration(
                                 border: Border(
                                   bottom: BorderSide(
-                                    color: Colors.grey[200]!,
+                                    color: tertiaryColor.withAlpha(200),
                                   ),
                                 ),
                               ),
@@ -143,7 +146,7 @@ class RegistrationPage extends StatelessWidget {
                                 controller: emailController,
                                 decoration: const InputDecoration(
                                   hintText: "Email",
-                                  hintStyle: TextStyle(color: Colors.grey),
+                                  hintStyle: TextStyle(color: tertiaryColor),
                                   border: InputBorder.none,
                                 ),
                               ),
@@ -153,7 +156,7 @@ class RegistrationPage extends StatelessWidget {
                               decoration: BoxDecoration(
                                 border: Border(
                                   bottom: BorderSide(
-                                    color: Colors.grey[200]!,
+                                    color: tertiaryColor.withAlpha(200),
                                   ),
                                 ),
                               ),
@@ -162,7 +165,7 @@ class RegistrationPage extends StatelessWidget {
                                 obscureText: true,
                                 decoration: const InputDecoration(
                                   hintText: "Senha",
-                                  hintStyle: TextStyle(color: Colors.grey),
+                                  hintStyle: TextStyle(color: tertiaryColor),
                                   border: InputBorder.none,
                                 ),
                               ),
@@ -182,13 +185,13 @@ class RegistrationPage extends StatelessWidget {
                           margin: const EdgeInsets.symmetric(horizontal: 50),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
-                            color: Colors.blue[800],
+                            color: primaryColor.withAlpha(500),
                           ),
                           child: const Center(
                             child: Text(
                               "Registrar",
                               style: TextStyle(
-                                color: Colors.white,
+                                color: secondaryColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -199,12 +202,13 @@ class RegistrationPage extends StatelessWidget {
                         padding: const EdgeInsets.all(36.0),
                         child: GestureDetector(
                           onTap: () {
-                            Navigator.pushReplacementNamed(context, '/'); // Return to the login page
+                            Navigator.pushReplacementNamed(
+                                context, '/'); // Return to the login page
                           },
                           child: const Text(
                             "Já possui uma conta? Login.",
                             style: TextStyle(
-                              color: Colors.grey,
+                              color: tertiaryColor,
                             ),
                           ),
                         ),
