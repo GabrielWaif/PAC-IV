@@ -40,7 +40,7 @@ class BoxButton extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   if (leading != null) leading!,
-                  if (leading != null) SizedBox(width: 5),
+                  if (leading != null) const SizedBox(width: 5),
                   Text(
                     title,
                     style: bodyStyle.copyWith(
@@ -50,7 +50,7 @@ class BoxButton extends StatelessWidget {
                   )
                 ],
               )
-            : CircularProgressIndicator(
+            : const CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation(Colors.white),
                 strokeWidth: 8,
               ),
