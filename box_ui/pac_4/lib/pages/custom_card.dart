@@ -1,6 +1,5 @@
 import 'package:box_ui/box_ui.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -12,7 +11,8 @@ class CustomCard extends StatefulWidget {
   final int downvotes;
   final DocumentReference cardReference;
 
-  CustomCard({
+  const CustomCard({
+    super.key,
     required this.title,
     required this.description,
     required this.imagePath,
@@ -59,59 +59,64 @@ class _CustomCardState extends State<CustomCard> {
   }
 
   @override
-Widget build(BuildContext context) {
-  final firebaseStorageURL = '${widget.imagePath}';
-  return AlertDialog(
-    title: Text(widget.title), // Title
-    content: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Image.network(
-          firebaseStorageURL,
-
-          fit: BoxFit.fill,
-        ), // Image from URL
-        SizedBox(height: 12.0), // Adjust spacing as needed
-        Text(widget.description), // Description
-      ],
-    ),
-    actions: <Widget>[
-      Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          ElevatedButton(
-            onPressed: handleUpvote,
-            child: Row(
-              children: [
-                Icon(Icons.arrow_upward, color: secondaryColor), // Thumbs-up icon
-                SizedBox(width: 8.0), // Adjust spacing as needed
-                Text('$upvotes', style: TextStyle(color: secondaryColor),), // Number of upvotes
-              ],
-            ),
-          ),
-          SizedBox(width: 8.0), // Add spacing between buttons
-          ElevatedButton(
-            onPressed: handleDownvote,
-            child: Row(
-              children: [
-                Icon(Icons.arrow_downward, color: secondaryColor), // Thumbs-down icon
-                SizedBox(width: 8.0), // Adjust spacing as needed
-                Text('$downvotes', style: TextStyle(color: secondaryColor),), // Number of downvotes
-            
-              ],
-            ),
-          ),
-          SizedBox(width: 8.0),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context); // Close the AlertDialog
-            },
-          child: Text('Fechar'),
-          ),
+  Widget build(BuildContext context) {
+    final firebaseStorageURL = widget.imagePath;
+    return AlertDialog(
+      title: Text(widget.title), // Title
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Image.network(
+            firebaseStorageURL,
+            fit: BoxFit.fill,
+          ), // Image from URL
+          const SizedBox(height: 12.0), // Adjust spacing as needed
+          Text(widget.description), // Description
         ],
       ),
-    ],
-  );
-}
-
+      actions: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            ElevatedButton(
+              onPressed: handleUpvote,
+              child: Row(
+                children: [
+                  const Icon(Icons.arrow_upward,
+                      color: secondaryColor), // Thumbs-up icon
+                  const SizedBox(width: 8.0), // Adjust spacing as needed
+                  Text(
+                    '$upvotes',
+                    style: const TextStyle(color: secondaryColor),
+                  ), // Number of upvotes
+                ],
+              ),
+            ),
+            const SizedBox(width: 8.0), // Add spacing between buttons
+            ElevatedButton(
+              onPressed: handleDownvote,
+              child: Row(
+                children: [
+                  const Icon(Icons.arrow_downward,
+                      color: secondaryColor), // Thumbs-down icon
+                  const SizedBox(width: 8.0), // Adjust spacing as needed
+                  Text(
+                    '$downvotes',
+                    style: const TextStyle(color: secondaryColor),
+                  ), // Number of downvotes
+                ],
+              ),
+            ),
+            const SizedBox(width: 8.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context); // Close the AlertDialog
+              },
+              child: const Text('Fechar'),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
 }

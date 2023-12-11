@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:box_ui/box_ui.dart';
 
@@ -22,7 +21,7 @@ class LoginPage extends StatelessWidget {
         Navigator.pushNamed(context, '/dialog'); // Navigate to the next screen
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text(
                 'Falha no login. Por favor verifique as credenciais informadas.'),
           ),
@@ -30,7 +29,7 @@ class LoginPage extends StatelessWidget {
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text(
               'Falha no login. Por favor verifique as credenciais informadas.'),
         ),

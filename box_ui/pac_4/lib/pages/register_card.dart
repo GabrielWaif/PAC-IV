@@ -59,7 +59,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Escrever Carta'),
+        title: const Text('Escrever Carta'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -67,32 +67,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             TextFormField(
-              decoration: InputDecoration(labelText: 'Título'),
+              decoration: const InputDecoration(labelText: 'Título'),
               onChanged: (value) {
                 setState(() {
                   title = value;
                 });
               },
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             TextFormField(
-              decoration: InputDecoration(labelText: 'Descrição'),
+              decoration: const InputDecoration(labelText: 'Descrição'),
               onChanged: (value) {
                 setState(() {
                   description = value;
                 });
               },
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _pickImage,
-              child: Text('Escolha uma Imagem'),
+              child: const Text('Escolha uma Imagem'),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             pickedImage != null
                 ? Image.file(File(pickedImage!.path),height: 300,)
-                : Text('Nenhuma imagem selecionada'),
-            SizedBox(height: 16.0),
+                : const Text('Nenhuma imagem selecionada'),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () async {
                 if (title.isNotEmpty && description.isNotEmpty) {
@@ -100,27 +100,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   if (imageUrl != null) {
                     await addCardToFirestore(imageUrl);
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text('Carta adicionada'),
                       ),
                     );
                     Navigator.pushNamed(context, '/dialog');
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text('Falha no upload da imagem'),
                       ),
                     );
                   }
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('Preencha todos os campos'),
                     ),
                   );
                 }
               },
-              child: Text('Enviar carta'),
+              child: const Text('Enviar carta'),
             ),
           ],
         ),

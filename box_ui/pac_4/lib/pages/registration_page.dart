@@ -23,7 +23,7 @@ class RegistrationPage extends StatelessWidget {
         Navigator.pushNamed(context, '/dialog'); // Navigate to the next screen
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text(
                 'Falha no registro. Por favor verifique as credenciais informadas.'),
           ),
@@ -31,7 +31,7 @@ class RegistrationPage extends StatelessWidget {
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text(
               'Falha no registro. Por favor verifique as credenciais informadas.'),
         ),
